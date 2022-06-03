@@ -6,7 +6,7 @@ from .forms import RoomForm
 from .forms import TopicForm
 from .models import Topic as TopicModel
 from .models import Room as RoomModel
-
+#tese
 
 class Home(View):
     template = 'base/home.html'
