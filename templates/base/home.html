@@ -1,0 +1,58 @@
+{% include 'main/main.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col s12"> <br> </div>
+    <div class="col s3">
+    <a href="{% url 'url_room_create' %}" class="waves-effect waves-light btn-large"><i class="material-icons left">airplay</i>Nova Sala</a>
+    <a href="{% url 'url_topic_create' %}" class="waves-effect waves-light btn-large"><i class="material-icons left">format_list_bulleted</i>Novo Topico</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s3">
+        <table class="highlight">
+            <thead>
+              <tr>
+                  <th>Tópicos</th>
+              </tr>
+            </thead>
+        
+            <tbody>
+                {% for  topic in topics %}
+              <tr>
+                <td>{{ topic }}</td>
+                <td><a href="{% url 'url_topic_detail' topic.id  %}" class="waves-effect waves-light btn-small"><i class="material-icons right">desktop_windows</i>Salas</a></td>
+              </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+    
+    <div class="col s5">
+        <table class="highlight">
+            <thead>
+            <tr>
+                <th>Salas</th>
+                <th>Tópico</th>
+                <th>Decrição</th>
+            </tr>
+            </thead>
+        
+            <tbody>
+                {% for  room in rooms %}
+            <tr>
+                <td>{{ room }}</td>
+                <td>{{ room.topic }}</td>
+                <td>{{ room.description }}</td>
+                <td><td><a class="waves-effect waves-light btn-small"><i class="material-icons right">desktop_windows</i>Entrar</a></td></td>
+            </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+    <div class="col s4"></div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% include 'main/main.html' %}{% block content %}
+
+<div class="row">
+    <div class="col s4">
+    </div>
+    
+    <div class="col s4">
+
+        <div class="divider"></div>
+        <div class="section">
+          <h5>Tópico: {{ topic }}</h5>
+
+        </div>
+        <table class="highlight">
+            <thead>
+            <tr>
+                <th>Salas</th>
+                <th>Tópico</th>
+                <th>Decrição</th>
+            </tr>
+            </thead>
+        
+            <tbody>
+                {% for room in rooms %}
+            <tr>
+                <td>{{ room }}</td>
+                <td>{{ room.topic }}</td>
+                <td>{{ room.description }}</td>
+                <td><td><a class="waves-effect waves-light btn-small"><i class="material-icons right">desktop_windows</i>Entrar</a></td></td>
+            </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+    <div class="col s4"></div>
+  </div>
+{% endblock content %}

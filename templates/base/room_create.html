@@ -1,0 +1,64 @@
+{% include 'main/main.html' %}
+
+
+<div class="row">
+    <div class="col s4"></div>
+    <div class="col s4">
+      
+        <form method="POST">{% csrf_token %}
+
+          <h4> Nova Sala </h4>
+            <div class="row">
+                <form class="col s10">
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">desktop_windows</i>
+                      <input id="input_text" type="text" data-length="10" name="{{ room.name.html_name }}">
+                      <label for="input_text">Nome</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">dehaze</i>
+                        <select name="{{ room.topic.html_name   }}">
+                          <option value="" disabled selected>Tópicos</option>
+                          {% for topic in topics %}
+                            <option value="{{ topic }}">{{ topic }}</option>
+                          {% endfor %}
+                        </select>
+                        <label>Materialize Select</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">description</i>
+                      <textarea id="textarea1" class="materialize-textarea" name="{{ room.description.html_name }}"></textarea>
+                      <label for="textarea1">Descrição</label>
+                    </div>    
+                  </div>
+                  <div class="row">      
+                      <button class="btn waves-effect waves-light" type="submit" name="action">Criar
+                        <i class="material-icons right">send</i>
+                      </button>
+                  </div>
+
+                </form>
+            </div>
+
+
+
+
+
+            <div class="row">
+        
+        </form>
+
+    </div>
+    <div class="col s4"></div>
+</div>
+
+
+
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>
