@@ -1,0 +1,51 @@
+{% include 'main/main.html' %}
+{% block content %}
+
+
+<div class="row">
+    <div class="col s4"></div>
+    <div class="col s6">
+
+        {% for message in messages %}
+        <div class="row">
+            <div class="col s12 m6">
+              <div class="card white darken-1">
+                <div class="card-content black-text">
+                  <i class="material-icons left">person</i>
+                  <span class="card-title">{{ message.user }}</span>
+                  
+                  <p>{{ message.body}}</p>
+                </div>
+                <div class="card-content black-text">
+                    <span>Criado em: {{ message.created}} </span>
+                </div>
+                <div class="card-action">
+                  <a class="waves-effect waves-light btn-small"><i class="material-icons left">done</i>curtir</a>
+                </div>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+
+
+    </div>
+    <div class="col s5"></div>
+</div>
+        
+
+
+
+
+
+{{ message.room}}
+
+{{ message.updated}}
+{{ message.created}}
+
+
+
+
+
+{% endblock content %}
