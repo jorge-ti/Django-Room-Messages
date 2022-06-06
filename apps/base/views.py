@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
+from django.http import HttpResponseRedirect
 
 from .forms import RoomForm
 from .forms import TopicForm
+from .forms import MessageForm
 from .models import Topic as TopicModel
 from .models import Room as RoomModel
 from .models import Message as MessageModel
@@ -15,9 +17,11 @@ class Home(View):
     def get(self, request, *args, **kwargs):
         topics = TopicModel.objects.all()
         rooms = RoomModel.objects.all()
+        messages = MessageModel.objects.order_by('updated')[:5]
         context = {
             'topics':topics,
-            'rooms':rooms
+            'rooms':rooms,
+            'messages':messages
         }
         return render(request, self.template, context)
 
@@ -99,9 +103,41 @@ class RoomCreate(View):
 
 class MessageList(View):
     template = 'base/message_list.html'
+    form = MessageForm()
 
     def get(self, request, *args, **kwargs):
         id_room = kwargs['pk']
         messages = MessageModel.objects.filter(room=id_room)
-        context = {'messages':messages}
+        context = {
+            'messages':messages,
+            'form':self.form
+        }
         return render(request, self.template, context)
+
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        id_room = kwargs['pk']
+        body = request.POST['body']
+        form = MessageForm(request.POST)
+        room = RoomModel.objects.get(id=id_room)
+        if form.is_valid():
+            
+            MessageModel.objects.create(
+                user = user,
+                room = room,
+                body = body,
+            )
+            return redirect('url_message_list', id_room)
+
+
+class MessageDelete(View):
+
+    def get(self, request, *args, **kwargs):
+        print(args)
+        print(kwargs)
+        id_message = kwargs['pk']
+        MessageModel.objects.filter(id=id_message).delete()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        
+

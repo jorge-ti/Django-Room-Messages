@@ -53,6 +53,25 @@
             
         </table>
     </div>
-    <div class="col s4"></div>
-  </div>
+    <div class="col s4"> 
+        <h5> Atividades Recentes </h5>
+        {% for message in messages %}
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card white darken-1">
+                        <div class="card-content black-text">
+                        <i class="material-icons left">person</i>
+                        <span class="card-title">{{ message.user }}</span>
+                        
+                        <p>{{ message.body}}</p>
+                        </div>
+                        <div class="card-content black-text">
+                            <span>Criado em: {{ message.created}} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}

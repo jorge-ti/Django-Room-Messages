@@ -3,7 +3,21 @@
 
 
 <div class="row">
-    <div class="col s4"></div>
+    <div class="col s4">
+      <div class="col s4"></div>
+      <div class="col s4">
+        <p><h6> Deixe seu comentário</h6></p>
+          <form method="POST">{% csrf_token %}
+          {{ form.media }}
+          {{ form.body }}
+           <p></p>
+          <button class="btn waves-effect waves-ligh" type="submit" name="action">Nova Mensagem
+            <i class="material-icons left">send</i>
+          </button>
+          </form>
+      </div>
+      <div class="col s4"></div>
+    </div>
     <div class="col s6">
 
         {% for message in messages %}
@@ -14,13 +28,16 @@
                   <i class="material-icons left">person</i>
                   <span class="card-title">{{ message.user }}</span>
                   
-                  <p>{{ message.body}}</p>
+                  <p>{{ message.body|safe}}</p>
                 </div>
                 <div class="card-content black-text">
                     <span>Criado em: {{ message.created}} </span>
                 </div>
                 <div class="card-action">
                   <a class="waves-effect waves-light btn-small"><i class="material-icons left">done</i>curtir</a>
+                  {% if message.user == request.user %}
+                  <a href="{% url 'url_message_delete' message.id %}" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i>apagar</a>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -34,15 +51,6 @@
     <div class="col s5"></div>
 </div>
         
-
-
-
-
-
-{{ message.room}}
-
-{{ message.updated}}
-{{ message.created}}
 
 
 
