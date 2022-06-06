@@ -6,15 +6,18 @@
     <div class="col s4">
       <div class="col s4"></div>
       <div class="col s4">
-        <p><h6> Deixe seu comentário</h6></p>
+        <div class="row">
+          <i class="material-icons left">note</i>
+          <p><h6> Deixe seu comentário</h6></p>
           <form method="POST">{% csrf_token %}
-          {{ form.media }}
-          {{ form.body }}
-           <p></p>
-          <button class="btn waves-effect waves-ligh" type="submit" name="action">Nova Mensagem
-            <i class="material-icons left">send</i>
-          </button>
+            {{ form.media }}
+            {{ form.body }}
+            <p></p>
+            <button class="btn waves-effect waves-ligh" type="submit" name="action">Nova Mensagem
+              <i class="material-icons left">send</i>
+            </button>
           </form>
+        </div>
       </div>
       <div class="col s4"></div>
     </div>

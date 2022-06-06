@@ -63,7 +63,7 @@
                         <i class="material-icons left">person</i>
                         <span class="card-title">{{ message.user }}</span>
                         
-                        <p>{{ message.body}}</p>
+                        <p>{{ message.body|safe}}</p>
                         </div>
                         <div class="card-content black-text">
                             <span>Criado em: {{ message.created}} </span>

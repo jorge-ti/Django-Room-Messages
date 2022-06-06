@@ -148,6 +148,6 @@ CKEDITOR_CONFIGS = {
             ['RemoveFormat', 'Source']
         ],
         'height': 300,
-        'width': 300,
+        'width': 400,
     },
 }

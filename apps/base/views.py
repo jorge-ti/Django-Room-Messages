@@ -17,7 +17,7 @@ class Home(View):
     def get(self, request, *args, **kwargs):
         topics = TopicModel.objects.all()
         rooms = RoomModel.objects.all()
-        messages = MessageModel.objects.order_by('updated', 'created')[:5]
+        messages = MessageModel.objects.order_by('-updated')[:5]
         context = {
             'topics':topics,
             'rooms':rooms,
